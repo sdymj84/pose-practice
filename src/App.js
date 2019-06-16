@@ -11,6 +11,12 @@ export default class App extends React.Component {
     }
 
     window.addEventListener("wheel", this.mouseWheelEvent)
+
+    this.pageColor = [
+      'lightskyblue',
+      'tomato',
+      'lightgreen',
+    ]
   }
 
   mouseWheelEvent = (e) => {
@@ -23,6 +29,10 @@ export default class App extends React.Component {
 
   handlePoseComplete = () => {
     window.addEventListener("wheel", this.mouseWheelEvent)
+  }
+
+  handlePageClick = (pageNum) => {
+    this.setState({ pageNum })
   }
 
   scrollUp = () => {
@@ -44,8 +54,11 @@ export default class App extends React.Component {
   render() {
     return (
       <Page
+        totalPage={this.state.totalPage}
         pageNum={this.state.pageNum}
-        handlePoseComplete={this.handlePoseComplete} />
+        handlePoseComplete={this.handlePoseComplete}
+        handlePageClick={this.handlePageClick}
+        backgroundColor={this.pageColor[this.state.pageNum - 1]} />
     )
   }
 }
