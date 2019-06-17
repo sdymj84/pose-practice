@@ -6,16 +6,29 @@ export default class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      totalPage: 3,
-      pageNum: 1,
+      totalPage: 4,
+      pageNum: 0,
     }
 
     window.addEventListener("wheel", this.mouseWheelEvent)
 
-    this.pageColor = [
-      'lightskyblue',
-      'tomato',
-      'lightgreen',
+    this.pages = [
+      {
+        title: 'Introduction',
+        color: 'lightskyblue'
+      },
+      {
+        title: 'Portfolio',
+        color: 'tomato'
+      },
+      {
+        title: 'About Me',
+        color: 'lightgreen'
+      },
+      {
+        title: 'Contact Me',
+        color: 'lightyellow'
+      },
     ]
   }
 
@@ -38,15 +51,15 @@ export default class App extends React.Component {
   scrollUp = () => {
     window.removeEventListener('wheel', this.mouseWheelEvent)
     this.setState(prevState => ({
-      pageNum: prevState.pageNum === 1 ? 1 : prevState.pageNum - 1
+      pageNum: prevState.pageNum === 0 ? 0 : prevState.pageNum - 1
     }))
   }
 
   scrollDown = () => {
     window.removeEventListener('wheel', this.mouseWheelEvent)
     this.setState(prevState => ({
-      pageNum: prevState.pageNum === prevState.totalPage
-        ? prevState.totalPage
+      pageNum: prevState.pageNum === prevState.totalPage - 1
+        ? prevState.totalPage - 1
         : prevState.pageNum + 1
     }))
   }
@@ -58,7 +71,7 @@ export default class App extends React.Component {
         pageNum={this.state.pageNum}
         handlePoseComplete={this.handlePoseComplete}
         handlePageClick={this.handlePageClick}
-        backgroundColor={this.pageColor[this.state.pageNum - 1]} />
+        pages={this.pages} />
     )
   }
 }
