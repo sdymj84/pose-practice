@@ -15,14 +15,11 @@ const Title = posed.div({
 
 const MovingDiv = posed.div({
   visible: {
-    scale: 0.7,
     // x: -50,
     // y: -200,
-    x: -50,
     delay: 500,
   },
   hidden: {
-    scale: 1,
     // x: 0,
     // y: 0,
     x: 0,
@@ -31,26 +28,34 @@ const MovingDiv = posed.div({
 
 const Content = posed.div({
   visible: {
+    x: '0%',
+    delayChildren: 1000,
+    staggerChildren: 2000,
+  },
+  hidden: {
+    x: '0%',
+  }
+})
+
+const H2 = posed.h2({
+  visible: {
     opacity: 1,
-    y: 0,
-    delay: 500,
+    x: 0,
   },
   hidden: {
     opacity: 0,
-    y: 50,
+    x: 10,
   }
 })
 
 const Container = styled.div`
   padding: 2em;
+
 `
 
 const StyledTitle = styled(Title)`
   font-size: 4em;
   font-weight: bold;
-  position: absolute;
-  top: 5%;
-  left: 10%;
 `
 
 const Introduction = () => {
@@ -64,10 +69,12 @@ const Introduction = () => {
       <StyledTitle pose={isVisible ? "visible" : "hidden"}>
         <MovingDiv pose={isVisible ? "visible" : "hidden"}>
           Minjun Youn
-      </MovingDiv>
+        </MovingDiv>
       </StyledTitle>
       <Content pose={isVisible ? "visible" : "hidden"}>
-        <h2>Please check my work below and contact me!</h2>
+        <H2>I am a enthusiastic web developer</H2>
+        <H2>Love the moment challenging problem is solved</H2>
+        <H2>Please check my work below that shows I'm ready</H2>
       </Content>
     </Container>
   )

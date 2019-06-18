@@ -18,49 +18,88 @@ const Div = posed.div({
 })
 
 const StyledLeftNav = styled.ul`
-  list-style-type: none;
-  position: fixed;
-  top: 30%;
-  left: -25px;
-  z-index: 1;
+  @media (min-width: 1025px) {
+    list-style-type: none;
+    position: fixed;
+    top: 30%;
+    left: -25px;
+    z-index: 1;
+    
+    li {
+      margin: 5px 0;
+    }
+    .text {
+      opacity: 0;
+      color: black;
+      font-weight: bold;
+    }
+    .current {
+      opacity: 0;
+      animation-name: current-nav;
+      animation-duration: 3s;
+    }
+    .text:hover {
+      cursor: pointer;
+      opacity: 1;
+    }
+    .left-nav-list {
+      display: flex;
+      align-items: center;
+    }
+    .icon {
+      display: inline-block;
+      width: 10px;
+      height: 25px;
+      margin: 2px 0;
+      border-left: 1px solid black;
+    }
+    .current-icon {
+      border-left: 5px solid black;
+    }
+  }
   
-  li {
-    margin: 5px 0;
-  }
-  .text {
-    opacity: 0;
-    color: black;
-    font-weight: bold;
-  }
-  .current {
-    opacity: 0;
-    animation-name: current-nav;
-    animation-duration: 3s;
-  }
-  .text:hover {
-    cursor: pointer;
-    opacity: 1;
-  }
-  .left-nav-list {
-    display: flex;
-    align-items: center;
-  }
-  .icon {
-    display: inline-block;
-    width: 10px;
-    height: 25px;
-    margin: 2px 0;
-    border-left: 1px solid black;
-  }
-  .current-icon {
-    border-left: 5px solid black;
-  }
-
   @keyframes current-nav {
     0% { opacity: 0 };
     15% { opacity: 1 };
     75% { opacity: 1 };
     100% { opacity: 0 };
+  }
+
+  @media (max-width: 1024px) {
+    list-style-type: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    
+    li {
+      margin: 5px 0;
+    }
+    .text {
+      color: black;
+      font-weight: bold;
+      position: relative;
+      left: -30px;
+    }
+    .text:hover {
+      cursor: pointer;
+    }
+    .left-nav-list {
+      display: inline-block;
+      width: 123px;
+    }
+    .icon {
+      display: inline-block;
+      width: 30px;
+      height: 25px;
+      margin: 2px 0;
+      border-left: 0;
+      border-top: 1px solid black;
+    }
+    .current-icon {
+      border-left: 0;
+      border-top: 5px solid black;
+    }
   }
 `
 
